@@ -1,11 +1,12 @@
 'use strict';
 
 const express = require('express') //npm install express
-const pokeData = require("./assets/poke.json")
+const pokeData = require("./assets/poke.json");
+require("dotenv").config(); // npm i dotenv
 
 const app = express();
 
-const PORT = 3000;
+const PORT = process.env.PORT;
 
 // localhost:3000
 app.get("/", (request, response) => {
@@ -35,6 +36,10 @@ app.get("/getPoke", (req,res) => {
     } catch (error) {
         res.status(500).send(error)
     }
+})
+
+app.get("*",(req,res) => {
+    res.status(404).send("NOT FOUND")
 })
 
 
